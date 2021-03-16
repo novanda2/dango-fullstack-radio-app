@@ -1,0 +1,12 @@
+{
+  "name": "static_src",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "esbuild main.js --bundle --outfile=../static/frontend/assets/main.js",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^2.1.0"
+  }
+}
