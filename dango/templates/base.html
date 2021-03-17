@@ -6,6 +6,9 @@
 
     <meta name="viewport" content="width=device-width,initial-scale=1" />
 
+    <link rel="icon" type="image/png" sizes="32x32" href="https://fullstackradio.com/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://fullstackradio.com/favicon-16x16.png">
+
     {% render_block "css" %}
     <link
       rel="preload"
@@ -74,7 +77,6 @@
         <div>{% block content %} {% endblock content %}</div>
       </div>
     </div>
-    <script src="{% static 'js/out.js' %}"></script>
     {% render_block "js" %}
   </body>
 </html>

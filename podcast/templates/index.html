@@ -7,8 +7,11 @@
         <p class="text-sm leading-5 text-gray-500"><time datetime="2021-1-28">{{episode.created | date:"M d, Y"}}</time>
         </p>
         <div>
-            <h2 class="mt-2 text-xl leading-7 font-semibold text-gray-900">{{episode.pk}}: {{episode.host}} -
-                {{episode.title}}</h2>
+            <h2 class="mt-2 text-xl leading-7 font-semibold text-gray-900">
+                {{episode.pk}}:
+                {% if episode.host %} {{episode.host}} - {% endif %}
+                {{episode.title}}
+            </h2>
             <div class="mt-3 text-base leading-6 text-gray-500">{{episode.excerpt | safe}}</div>
         </div>
         <div class="mt-3">
