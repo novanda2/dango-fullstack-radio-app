@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% load cms_tags %}
 
-{% block title %}{{object.pk}}:
-{% if object.host %} {{object.host}} - {% endif %}
-{{object.title}} · Full Stack Radio{% endblock title %}
+{% block title %}{{object.pk}}: {% if object.host %} {{object.host}} - {% endif %} {{object.title}} · Full Stack Radio{% endblock title %}
 
+{% if object.excerpt %}
+{% block meta_description %}{{ object.excerpt }}{% endblock meta_description %}
+{% endif %}
 
 {% block content %}
 <div class="mt-7">

@@ -1,5 +1,5 @@
 from django.db import models
-from ckeditor.fields import RichTextField
+# from ckeditor.fields import RichTextField
 from cms.models.fields import PlaceholderField
 
 
@@ -35,12 +35,13 @@ STATUS_CHOICES = (
 
 
 class Episode(models.Model):
-    host = models.ForeignKey(Host, on_delete=models.SET_NULL, default=None, null=True, blank=True)
+    host = models.ForeignKey(
+        Host, on_delete=models.SET_NULL, default=None, null=True, blank=True)
     title = models.CharField(max_length=200)
     podcast = models.CharField(max_length=200, null=True, blank=True)
     content = PlaceholderField(
         'podcast_content', related_name='podcast_content')
-    excerpt = RichTextField(default="excerpt")
+    excerpt = models.TextField(default="excerpt")
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
