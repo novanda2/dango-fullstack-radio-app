@@ -191,7 +191,6 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'tailwind',
     'theme',
-    'frontend',
 ]
 
 LANGUAGES = (
