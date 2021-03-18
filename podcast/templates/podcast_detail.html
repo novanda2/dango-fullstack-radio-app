@@ -25,8 +25,8 @@
         </h2>
 
         <div class="mt-3 text-base leading-6 text-gray-600">
-          <!-- {{object.excerpt | safe}} -->
-          {% render_model object "excerpt" %}
+          {% render_model object "excerpt" as excerpt %}
+          {{excerpt | safe}}
         </div>
 
         {% if object.podcast %}
