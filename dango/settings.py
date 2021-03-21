@@ -183,14 +183,14 @@ INSTALLED_APPS = [
     'dango',
 
     # apps
-    'podcast',
-    'podcast_cms_integration',
+    'dango.apps.theme',
+    'dango.apps.podcast',
+    'dango.apps.podcast_cms_integration',
 
     # deps
     'ckeditor',
     'ckeditor_uploader',
     'tailwind',
-    'theme',
 ]
 
 LANGUAGES = (
