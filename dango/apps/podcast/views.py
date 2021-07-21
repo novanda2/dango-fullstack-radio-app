@@ -6,6 +6,7 @@ from .models import Episode, Host
 
 class PodcastListView(ListView):
     queryset = Episode.objects.filter(status=1).order_by('-created')
+    paginate_by = 3
     template_name = 'index.html'
 
 
