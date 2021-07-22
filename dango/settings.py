@@ -14,6 +14,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from django.utils.translation import ugettext_lazy as _
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -71,8 +73,16 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
+LANGUAGES = (
+    ('id', _('Indonesia')),
+    ('en', _('English')),
+)
 
-LANGUAGE_CODE = 'en'
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
+
+LANGUAGE_CODE = 'id'
 
 TIME_ZONE = 'Asia/Jakarta'
 
@@ -136,7 +146,7 @@ MIDDLEWARE = [
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
-    'cms.middleware.language.LanguageCookieMiddleware'
+    # 'cms.middleware.language.LanguageCookieMiddleware'
 ]
 
 INSTALLED_APPS = [
@@ -192,28 +202,31 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
 ]
 
-LANGUAGES = (
-    ## Customize this
-    ('en', gettext('en')),
-)
-
-CMS_LANGUAGES = {
-    ## Customize this
-    1: [
-        {
-            'code': 'en',
-            'name': gettext('en'),
-            'redirect_on_fallback': True,
-            'public': True,
-            'hide_untranslated': False,
-        },
-    ],
-    'default': {
-        'redirect_on_fallback': True,
-        'public': True,
-        'hide_untranslated': False,
-    },
-}
+# CMS_LANGUAGES = {
+#     ## Customize this
+#     1: [
+#         {
+#             'code': 'en',
+#             'name': gettext('
+# '),
+#             'redirect_on_fallback': False,
+#             'public': True,
+#             'hide_untranslated': False,
+#         },
+#         {
+#             'code': 'id',
+#             'name': gettext('id'),
+#             'redirect_on_fallback': False,
+#             'public': True,
+#             'hide_untranslated': False,
+#         },
+#     ],
+#     'default': {
+#         'redirect_on_fallback': True,
+#         'public': True,
+#         'hide_untranslated': False,
+#     },
+# }
 
 CMS_TEMPLATES = (
     ## Customize this
