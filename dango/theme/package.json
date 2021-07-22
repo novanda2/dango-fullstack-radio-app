@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "autoprefixer": "^10.3.1",
+    "postcss": "^8.3.6",
+    "tailwindcss": "^2.2.6"
+  },
+  "scripts": {
+    "prod": "NODE_ENV=production npx tailwindcss -i ./src/tailwind.css -o ../static/theme/styles.css --minify"
+  }
+}
