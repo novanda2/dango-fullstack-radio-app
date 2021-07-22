@@ -185,6 +185,7 @@ INSTALLED_APPS = [
     # apps
     'dango.apps.podcast',
     'dango.apps.podcast_cms_integration',
+    'dango.theme',
 
     # deps
     'ckeditor',
@@ -248,5 +249,3 @@ THUMBNAIL_PROCESSORS = (
 
 CKEDITOR_BASEPATH = os.path.join(STATIC_URL, 'ckeditor/ckeditor/')
 CKEDITOR_UPLOAD_PATH = "uploads/"
-
-TAILWIND_APP_NAME = 'theme'
