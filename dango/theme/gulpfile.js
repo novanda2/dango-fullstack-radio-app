@@ -23,7 +23,7 @@ const _styles = (cb) => {
 		)
 		.pipe(__prod__ ? cleanCSS({ compatibility: 'ie8' }) : noop())
 		.pipe(concat("styles.css"))
-		.pipe(dest('../static/theme'))
+		.pipe(dest('./static/theme'))
 	cb()
 }
 
