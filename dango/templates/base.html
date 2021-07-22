@@ -1,4 +1,4 @@
-{% load cms_tags menu_tags sekizai_tags static %}
+{% load cms_tags menu_tags sekizai_tags static i18n %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +13,8 @@
   <link rel="icon" type="image/png" sizes="16x16" href="https://fullstackradio.com/favicon-16x16.png">
 
   {% render_block "css" %}
-  <link rel="preload" href="{% static 'theme/styles.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <link rel="preload" href="{% static 'theme/styles.css' %}" as="style"
+    onload="this.onload=null;this.rel='stylesheet'" />
   <noscript>
     <link rel="stylesheet" href="{% static 'theme/styles.css' %}" />
   </noscript>
