@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-22 09:03+0000\n"
+"POT-Creation-Date: 2021-07-23 11:08+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,6 +22,10 @@ msgstr ""
 msgid "Show notes"
 msgstr ""
 
+#: dango/apps/podcast/views.py:22
+msgid "i want to say ok"
+msgstr "i want to say ok translated in english"
+
 #: dango/apps/podcast_cms_integration/cms_plugins.py:10
 msgid "Podcast"
 msgstr ""
@@ -30,10 +34,10 @@ msgstr ""
 msgid "Podcast Plugin"
 msgstr ""
 
-#: dango/settings.py:77
-msgid "Indonesia"
+#: dango/settings.py:73
+msgid "Indonesian"
 msgstr ""
 
-#: dango/settings.py:78
+#: dango/settings.py:74
 msgid "English"
 msgstr ""
