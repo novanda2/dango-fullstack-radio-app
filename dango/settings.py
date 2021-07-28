@@ -100,6 +100,22 @@ CMS_LANGUAGES = {
             'redirect_on_fallback': True,
         },
     ],
+    2: [
+        {
+            'public': True,
+            'code': 'id',
+            'hide_untranslated': False,
+            'name': _('Bahasa Indonesia'),
+            'redirect_on_fallback': True,
+        },
+        {
+            'public': True,
+            'code': 'en',
+            'hide_untranslated': False,
+            'name': _('English'),
+            'redirect_on_fallback': True,
+        },
+    ],
 }
 
 LOCALE_PATHS = (os.path.join(os.path.dirname(__file__), '../locale/'),)
