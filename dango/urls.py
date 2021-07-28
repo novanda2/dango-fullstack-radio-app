@@ -1,24 +1,23 @@
-from django.conf.urls import url
-from cms.sitemaps import CMSSitemap
+from django.urls.conf import include, re_path
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.sitemaps.views import sitemap
-from django.urls import include, path
-from dango.apps.podcast import urls as podcast_urls
+from django.views.i18n import JavaScriptCatalog
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 admin.autodiscover()
 
-urlpatterns = [
-    path("sitemap.xml", sitemap, {"sitemaps": {"cmspages": CMSSitemap}}),
-]
+urlpatterns = i18n_patterns(
+    re_path(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog'),
+)
+
+urlpatterns += staticfiles_urlpatterns()
 
 urlpatterns += i18n_patterns(
-    path("admin/", admin.site.urls),
-    url(r'^', include('cms.urls')),
-    url(r'^podcast/', include('dango.apps.podcast.urls')),
-    url(r'^i18n/', include('django.conf.urls.i18n')),
+    re_path(r'^', include(('dango.apps.podcast.urls', 'podcast'), namespace="podcast"), name="podcast"),
+    re_path("admin/", admin.site.urls),
+    re_path(r'^i18n/', include('django.conf.urls.i18n')),
 )
 
 # This is only needed when using runserver.
