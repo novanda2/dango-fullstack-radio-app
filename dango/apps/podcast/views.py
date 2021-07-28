@@ -1,11 +1,10 @@
-from django.http import HttpResponse
+from django.http.response import HttpResponse
 from django.views.generic import ListView
 from django.views.generic import DetailView
 from django.utils.translation import gettext as _
 
 
 from .models import Episode, Host
-
 
 class PodcastListView(ListView):
     queryset = Episode.objects.filter(status=1).order_by('-created')
