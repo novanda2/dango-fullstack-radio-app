@@ -1,3 +1,4 @@
+from django.utils.translation import ugettext_lazy as _
 from pathlib import Path
 import os  # isort:skip
 def gettext(s): return s
@@ -67,19 +68,41 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
-from django.utils.translation import ugettext_lazy as _
 
 LANGUAGES = (
-    ('id', _('Indonesian')),
+    ('id', _('Bahasa Indonesia')),
     ('en', _('English')),
 )
 
 LANGUAGE_CODE = 'id'
 DEFAULT_LANGUAGE = 1
 
-LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'locale'),
-]
+CMS_LANGUAGES = {
+    # Customize this
+    'default': {
+        'public': True,
+        'hide_untranslated': False,
+        'redirect_on_fallback': True,
+    },
+    1: [
+        {
+            'public': True,
+            'code': 'en',
+            'hide_untranslated': False,
+            'name': _('English'),
+            'redirect_on_fallback': True,
+        },
+        {
+            'public': True,
+            'code': 'id',
+            'hide_untranslated': False,
+            'name': _('Bahasa Indonesia'),
+            'redirect_on_fallback': True,
+        },
+    ],
+}
+
+LOCALE_PATHS = (os.path.join(os.path.dirname(__file__), '../locale/'),)
 
 
 TIME_ZONE = 'Asia/Jakarta'
@@ -133,7 +156,6 @@ TEMPLATES = [
 
 
 MIDDLEWARE = [
-    'cms.middleware.utils.ApphookReloadMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -144,7 +166,8 @@ MIDDLEWARE = [
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
-    # 'cms.middleware.language.LanguageCookieMiddleware'
+    'cms.middleware.language.LanguageCookieMiddleware',
+    'cms.middleware.utils.ApphookReloadMiddleware',
 ]
 
 INSTALLED_APPS = [
