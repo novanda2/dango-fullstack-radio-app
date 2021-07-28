@@ -1,6 +1,7 @@
 {% load i18n %}
 
-<form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+{{ url  }}
+<form action="{% url "test" %}" method="post">{% csrf_token %}
      <select name="language">
         {% get_current_language as LANGUAGE_CODE %}
         {% get_available_languages as LANGUAGES %}
@@ -15,4 +16,14 @@
  </form>
 
 
-{% trans "Have a good day" %}
+{% get_available_languages as LANGUAGES %}
+{{LANGUAGES}}
+{% get_current_language as LANGUAGE_CODE %}
+Current language: {{ LANGUAGE_CODE }}
+<p>{% translate "Welcome to our page" %}</p>
+
+{% language 'id' %}
+    {% get_current_language as LANGUAGE_CODE %}
+     Current language: {{ LANGUAGE_CODE }} 
+    <p>{% translate "Welcome to our page" %}</p>
+{% endlanguage %}
