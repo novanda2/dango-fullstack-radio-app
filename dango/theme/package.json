@@ -15,5 +15,8 @@
   "scripts": {
     "start": "gulp",
     "prod": "NODE_ENV=production gulp build"
+  },
+  "dependencies": {
+    "rimraf": "^3.0.2"
   }
 }
