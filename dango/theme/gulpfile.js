@@ -8,13 +8,19 @@ const sass = require('gulp-sass')(require('node-sass'))
 const postcss = require('gulp-postcss')
 const cleanCSS = require('gulp-clean-css')
 const autoprefixer = require('gulp-autoprefixer')
+const rimraf = require('rimraf')
 
 const _styles = (cb) => {
 	src("./src/styles/index.scss")
 		.pipe(
 			sass({ outputStyle: 'compressed' }).on('error', sass.logError)
 		)
-		.pipe(postcss())
+		.pipe(
+			postcss([
+				require("tailwindcss")(__prod__ ? "./tailwind.config.js" : { ..."./tailwind.config.js", purge: false }),
+				require("autoprefixer"),
+			])
+		)
 		.pipe(
 			autoprefixer({
 				browserlist: ['last 2 versions'],
@@ -25,6 +31,10 @@ const _styles = (cb) => {
 		.pipe(concat("styles.css"))
 		.pipe(dest('./static/theme'))
 	cb()
+}
+
+const clean = (cb) => {
+	rimraf('./static', cb);
 }
 
 const _watch = (cb) => {
