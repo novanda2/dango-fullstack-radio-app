@@ -1,9 +1,8 @@
-{% extends "base.html" %}
 {% load i18n %}
 
-{% block content %}
+
 <div class="mt-6 grid gap-12 border-t-2 border-gray-100 py-8">
-    {% for episode in episode_list %}
+    {% for episode in placeholder %}
     <div class="relative">
         <p class="text-sm leading-5 text-gray-500"><time datetime="2021-1-28">{{episode.created | date:"M d, Y"}}</time>
         </p>
@@ -41,4 +40,3 @@
     </div>
     {% endif %}
 </div>
-{% endblock content %}

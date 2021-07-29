@@ -3,12 +3,13 @@ FROM python:3.7.4-slim-stretch as Python
 COPY requirements.txt .
 
 # install deps
-RUN apt-get update
+RUN apt-get update --fix-missing
 RUN pip install -r requirements.txt
 
 # nodejs (optional)
-RUN apt-get update && apt-get install curl -y
-RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && apt-get install -y nodejs npm && npm install --global yarn
+# RUN apt-get update --fix-missing 
+# RUN apt-get install curl -y --fix-missing
+# RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && apt-get install -y nodejs npm && npm install --global yarn
 
 FROM python:3.7.4-slim-stretch
 

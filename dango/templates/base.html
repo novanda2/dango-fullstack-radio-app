@@ -1,6 +1,7 @@
-{% load cms_tags menu_tags sekizai_tags static %}
+{% load i18n cms_tags menu_tags sekizai_tags static %}
+{% load i18n  menu_tags sekizai_tags static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
   <title>{% block title %}Full Stack Radio{% endblock title %}</title>
@@ -13,14 +14,16 @@
   <link rel="icon" type="image/png" sizes="16x16" href="https://fullstackradio.com/favicon-16x16.png">
 
   {% render_block "css" %}
-  <link rel="preload" href="{% static 'css/styles.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <link rel="preload" href="{% static 'theme/styles.css' %}" as="style"
+    onload="this.onload=null;this.rel='stylesheet'" />
   <noscript>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'theme/styles.css' %}" />
   </noscript>
 </head>
 
+
+{% cms_toolbar %}
 <body>
-  {% cms_toolbar %}
   <div class="bg-white pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
     <div class="relative max-w-2xl mx-auto">
       <div class="flex flex-col items-center space-y-8 sm:items-start sm:space-y-0 sm:flex-row sm:space-x-8">
@@ -33,9 +36,7 @@
           </h1>
           <div class="mt-2">
             <p class="text-xl leading-7 text-gray-500">
-              A podcast for developers interested in building great software
-              products. Hosted by
-              <!-- -->
+              {% trans  "A podcast for developers interested in building great software products. Hosted by" %}
               <a href="https://twitter.com/adamwathan">Adam Wathan</a>.
             </p>
           </div>
@@ -54,6 +55,7 @@
     </div>
   </div>
   {% render_block "js" %}
+  <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
 </body>
 
 </html>

@@ -1,5 +1,9 @@
+from django.utils.translation import ugettext_lazy as _
+from pathlib import Path
 import os  # isort:skip
-gettext = lambda s: s
+def gettext(s): return s
+
+
 DATA_DIR = os.path.dirname(os.path.dirname(__file__))
 """
 Django settings for dango project.
@@ -13,7 +17,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,11 +37,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 
-
-
-
 ROOT_URLCONF = 'dango.urls'
-
 
 
 WSGI_APPLICATION = 'dango.wsgi.application'
@@ -46,8 +45,6 @@ WSGI_APPLICATION = 'dango.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-
 
 
 # Password validation
@@ -72,7 +69,57 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en'
+LANGUAGES = (
+    ('id', _('Bahasa Indonesia')),
+    ('en', _('English')),
+)
+
+LANGUAGE_CODE = 'id'
+DEFAULT_LANGUAGE = 1
+
+CMS_LANGUAGES = {
+    # Customize this
+    'default': {
+        'public': True,
+        'hide_untranslated': False,
+        'redirect_on_fallback': True,
+    },
+    1: [
+        {
+            'public': True,
+            'code': 'en',
+            'hide_untranslated': False,
+            'name': _('English'),
+            'redirect_on_fallback': True,
+        },
+        {
+            'public': True,
+            'code': 'id',
+            'hide_untranslated': False,
+            'name': _('Bahasa Indonesia'),
+            'redirect_on_fallback': True,
+        },
+    ],
+    2: [
+        {
+            'public': True,
+            'code': 'id',
+            'hide_untranslated': False,
+            'name': _('Bahasa Indonesia'),
+            'redirect_on_fallback': True,
+        },
+        {
+            'public': True,
+            'code': 'en',
+            'hide_untranslated': False,
+            'name': _('English'),
+            'redirect_on_fallback': True,
+        },
+    ],
+}
+
+LOCALE_PATHS = (os.path.join(os.path.dirname(__file__), '../locale/'),)
+
 
 TIME_ZONE = 'Asia/Jakarta'
 
@@ -81,6 +128,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+APPEND_SLASH = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -100,7 +149,7 @@ SITE_ID = 1
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'dango', 'templates'),],
+        'DIRS': [os.path.join(BASE_DIR, 'dango', 'templates'), ],
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
@@ -125,18 +174,18 @@ TEMPLATES = [
 
 
 MIDDLEWARE = [
-    'cms.middleware.utils.ApphookReloadMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
-    'cms.middleware.language.LanguageCookieMiddleware'
+    'cms.middleware.language.LanguageCookieMiddleware',
+    'cms.middleware.utils.ApphookReloadMiddleware',
 ]
 
 INSTALLED_APPS = [
@@ -183,41 +232,18 @@ INSTALLED_APPS = [
     'dango',
 
     # apps
-    'dango.apps.theme',
     'dango.apps.podcast',
     'dango.apps.podcast_cms_integration',
+    'dango.theme',
 
     # deps
     'ckeditor',
     'ckeditor_uploader',
-    'tailwind',
 ]
 
-LANGUAGES = (
-    ## Customize this
-    ('en', gettext('en')),
-)
-
-CMS_LANGUAGES = {
-    ## Customize this
-    1: [
-        {
-            'code': 'en',
-            'name': gettext('en'),
-            'redirect_on_fallback': True,
-            'public': True,
-            'hide_untranslated': False,
-        },
-    ],
-    'default': {
-        'redirect_on_fallback': True,
-        'public': True,
-        'hide_untranslated': False,
-    },
-}
 
 CMS_TEMPLATES = (
-    ## Customize this
+    # Customize this
     ('fullwidth.html', 'Fullwidth'),
     ('sidebar_left.html', 'Sidebar Left'),
     ('sidebar_right.html', 'Sidebar Right')
@@ -250,5 +276,3 @@ THUMBNAIL_PROCESSORS = (
 
 CKEDITOR_BASEPATH = os.path.join(STATIC_URL, 'ckeditor/ckeditor/')
 CKEDITOR_UPLOAD_PATH = "uploads/"
-
-TAILWIND_APP_NAME = 'theme'
