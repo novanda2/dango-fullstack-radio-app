@@ -26,6 +26,6 @@ class PodcastListPluginPublisher(CMSPluginBase):
     name = _("Podcast List")
 
     def render(self, context, instance, placeholder):
-        placeholder = Episode.objects.filter(status=1).order_by('-created')
+        placeholder = Episode.objects.filter(status=1).order_by('-created')[:1]
         context = super().render(context, instance, placeholder)
         return context
