@@ -1,4 +1,4 @@
-{% comment %} {% load i18n cms_tags menu_tags sekizai_tags static %} {% endcomment %}
+{% load i18n cms_tags menu_tags sekizai_tags static %}
 {% load i18n  menu_tags sekizai_tags static %}
 <!DOCTYPE html>
 <html lang="id">
@@ -21,6 +21,8 @@
   </noscript>
 </head>
 
+
+{% cms_toolbar %}
 <body>
   <div class="bg-white pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
     <div class="relative max-w-2xl mx-auto">
@@ -47,7 +49,7 @@
           </div>
         </div>
       </div>
-      {% comment %} {% static_placeholder 'header' %} {% endcomment %}
+      {% static_placeholder 'header' %}
 
       <div>{% block content %} {% endblock content %}</div>
     </div>
